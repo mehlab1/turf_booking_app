@@ -1,0 +1,21 @@
+# Ignore Python bytecode and cache
+__pycache__/
+*.py[cod]
+
+# Ignore virtual environments
+venv/
+.env/
+
+# Ignore database files (optional, if using SQLite)
+*.db
+*.sqlite3
+
+# Ignore migration files (Flask-Migrate)
+migrations/
+
+# Ignore environment-specific files
+.DS_Store
+*.log
+
+# VSCode settings (optional)
+.vscode/
