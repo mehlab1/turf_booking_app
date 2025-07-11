@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Dashboard</title>
+</head>
+<body>
+    <h1>Welcome to the Admin Dashboard</h1>
+    <ul>
+        <li><a href="{{ url_for('admin.all_bookings') }}">View All Bookings</a></li>
+        <li><a href="{{ url_for('admin.upcoming_bookings') }}">Upcoming Bookings</a></li>
+    </ul>
+</body>
+</html>

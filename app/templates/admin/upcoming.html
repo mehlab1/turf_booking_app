@@ -1,0 +1,11 @@
+<h2>Upcoming Bookings</h2>
+{% for entry in bookings %}
+  <div>
+      <p><strong>User:</strong> {{ entry.user.email }}</p>
+      <p><strong>Turf:</strong> {{ entry.turf.name }}</p>
+      <p><strong>Time:</strong> {{ entry.slot.start_time }} - {{ entry.slot.end_time }}</p>
+  </div>
+  <hr>
+{% else %}
+  <p>No upcoming bookings found.</p>
+{% endfor %}

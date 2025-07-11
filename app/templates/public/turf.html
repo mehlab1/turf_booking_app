@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ turf.name }}</title>
+    <script src="https://cdn.socket.io/4.0.0/socket.io.min.js"></script>
+</head>
+<body>
+    <h1>{{ turf.name }}</h1>
+    <p>Price per slot: Rs. {{ turf.price_per_slot }}</p>
+
+    <h2>Available Slots</h2>
+    <ul id="slot-list">
+        <li>Loading slots...</li>
+    </ul>
+
+    <script>
+        const socket = io();
+
+        // Request time slots for this turf
+        socket.emit('request_slots', { turf_id: {{ turf.id | tojson | safe }} });
+
+        // Receive slot updates from the server
+        socket.on('update_slots', function(slots) {
+            const list = document.getElementById('slot-list');
+            list.innerHTML = '';
+
+            if (slots.length === 0) {
+                list.innerHTML = '<li>No slots found.</li>';
+                return;
+            }
+
+            slots.forEach(slot => {
+                const li = document.createElement('li');
+                const start = new Date(slot.start).toLocaleString();
+
+                if (slot.booked) {
+                    li.textContent = `⛔ Slot at ${start} - Already Booked`;
+                } else {
+                    li.innerHTML = `
+                        ✅ Slot at ${start}
+                        <form method="GET" action="/book/${slot.id}" style="display:inline;">
+                            <button type="submit">Book</button>
+                        </form>`;
+                }
+
+                list.appendChild(li);
+            });
+        });
+
+        // (Optional) Show feedback if using live booking via socket
+        socket.on('booking_success', (data) => {
+            alert("✅ Slot " + data.slot_id + " booked successfully!");
+            socket.emit('request_slots', { turf_id: {{ turf.id | tojson | safe }} });
+        });
+
+        socket.on('booking_error', (data) => {
+            alert("❌ Error: " + data.msg);
+        });
+    </script>
+</body>
+</html>

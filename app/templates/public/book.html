@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Book Slot</title>
+</head>
+<body>
+    <h2>Booking Slot #{{ slot.id }}</h2>
+
+    <p><strong>Start Time:</strong> {{ slot.start_time }}</p>
+    <p><strong>End Time:</strong> {{ slot.end_time }}</p>
+    <p><strong>Price:</strong> 50% advance required (Rs. {{ slot.turf.price_per_slot / 2 }})</p>
+
+    <hr>
+
+    <h3>Pay via Easypaisa or JazzCash:</h3>
+    <p><strong>Send payment to:</strong> 03XXXXXXXXX</p>
+    <p><strong>Payment Purpose:</strong> Turf Booking for Slot #{{ slot.id }}</p>
+
+    <form method="post">
+        <p>After payment, click below to confirm:</p>
+        <button type="submit">Confirm Booking (I have paid)</button>
+    </form>
+
+    <a href="/">← Back to Home</a>
+</body>
+</html>

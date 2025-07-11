@@ -1,0 +1,11 @@
+<h2>Your Bookings</h2>
+{% for entry in bookings %}
+  <div style="margin-bottom: 20px;">
+      <p><strong>Turf:</strong> {{ entry.turf.name }}</p>
+      <p><strong>Slot:</strong> {{ entry.slot.start_time }} - {{ entry.slot.end_time }}</p>
+      <p><strong>Deposit Paid:</strong> {{ '✅' if entry.booking.deposit_paid else '❌' }}</p>
+      <p><strong>Full Paid:</strong> {{ '✅' if entry.booking.full_paid else '❌' }}</p>
+  </div>
+{% else %}
+  <p>You have no bookings.</p>
+{% endfor %}

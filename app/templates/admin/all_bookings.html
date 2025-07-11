@@ -1,0 +1,15 @@
+<h2>All Bookings</h2>
+{% for entry in bookings %}
+  <div style="margin-bottom: 20px;">
+      <p><strong>User:</strong> {{ entry.user.email }}</p>
+      <p><strong>Turf:</strong> {{ entry.turf.name }}</p>
+      <p><strong>Slot:</strong> {{ entry.slot.start_time }} - {{ entry.slot.end_time }}</p>
+      <p><strong>Deposit Paid:</strong> {{ '✅' if entry.booking.deposit_paid else '❌' }}</p>
+      <p><strong>Full Paid:</strong> {{ '✅' if entry.booking.full_paid else '❌' }}</p>
+      {% if not entry.booking.full_paid %}
+          <a href="{{ url_for('admin.mark_paid', id=entry.booking.id) }}">✅ Mark Full Paid</a>
+      {% endif %}
+  </div>
+{% else %}
+  <p>No bookings yet.</p>
+{% endfor %}

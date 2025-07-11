@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Turf Booking</title>
+    <script src="https://cdn.socket.io/4.0.0/socket.io.min.js"></script>
+</head>
+<body>
+    <h1>Welcome to Turf Booking</h1>
+    <ul>
+        {% for turf in turfs %}
+            <li><a href="/turf/{{ turf.id }}">{{ turf.name }}</a> - Rs.{{ turf.price_per_slot }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
