@@ -1,0 +1,12 @@
+<h2>Register</h2>
+<form method="POST">
+  <label>Email:</label>
+  <input type="email" name="email" required><br><br>
+
+  <label>Password:</label>
+  <input type="password" name="password" required><br><br>
+
+  <button type="submit">Register</button>
+</form>
+
+<p><a href="{{ url_for('public.login') }}">Already have an account? Login here</a></p>
